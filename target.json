@@ -1,13 +1,7 @@
-{
+ {
     "web": {
-        "baseUrl": "http://localhost/litecart/admin",
+        "baseUrl": "http://localhost/litecart/admin/login.php",
         "username": "admin",
         "password": "admin"
-    },
-    "db": {
-        "host": "localhost",
-        "name": "addressbook",
-        "user": "root",
-        "password": ""
     }
 }

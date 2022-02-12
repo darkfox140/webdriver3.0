@@ -23,8 +23,7 @@ class Application:
             return False
 
     def open_home_page(self):
-        browser = self.browser
-        browser.get(self.base_url)
+        self.browser.get(self.base_url)
 
     def destroy(self):
         self.browser.quit()
