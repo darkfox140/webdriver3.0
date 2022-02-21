@@ -1,4 +1,4 @@
 
 
 def test_login(app):
-    pass
+    app.admin.litercart_link()
