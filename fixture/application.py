@@ -1,5 +1,6 @@
 from selenium import webdriver
 from fixture.session import SessionHelper
+from  .admin_panel import AdminHelper
 
 
 class Application:
@@ -11,8 +12,9 @@ class Application:
             self.browser = webdriver.Chrome()
         else:
             raise ValueError("Unrecognized browser %s" % browser)
-        self.browser.implicitly_wait(10)
+        self.browser.implicitly_wait(3)
         self.session = SessionHelper(self)
+        self.admin = AdminHelper(self)
         self.base_url = base_url
 
     def is_valid(self):
