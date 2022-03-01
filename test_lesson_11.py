@@ -21,7 +21,7 @@ def test_l11(browser):
     browser.find_element_by_css_selector("tr:last-of-type").click()
 
     for key, item in account_info.items():
-        browser.find_element_by_name(key).send_keys(item)
+        browser.find_element_by_xpath("//*[@name='%s']" % key).send_keys(item)
 
     Select(browser.find_element_by_xpath("//select[@name='country_code']")).select_by_value("US")
     Select(browser.find_element_by_xpath("//select[@name='zone_code']")).select_by_value("CA")
