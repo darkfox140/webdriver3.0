@@ -1,13 +1,5 @@
-import pytest
-from selenium import webdriver
+from fixture.config import browser
 from selenium.webdriver.common.by import By
-
-
-@pytest.fixture
-def browser(request):
-    browser = webdriver.Chrome()
-    request.addfinalizer(browser.quit)
-    return browser
 
 
 def test_lesson_8(browser):
@@ -15,5 +7,6 @@ def test_lesson_8(browser):
     browser.implicitly_wait(10)
     products = browser.find_elements(By.XPATH, "//*[@class='image-wrapper']")
     for product in products:
+        #stickers = product.find_elements(By.XPATH, "//*[contains(@class, 'sticker')]")
         stickers = product.find_elements(By.CSS_SELECTOR, ".sticker")
         assert len(stickers) == 1

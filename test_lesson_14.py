@@ -1,14 +1,6 @@
 from selenium.webdriver.support import expected_conditions as EC
-import pytest
-from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
-
-
-@pytest.fixture
-def browser(request):
-    browser = webdriver.Chrome()
-    request.addfinalizer(browser.quit)
-    return browser
+from fixture.config import browser
 
 
 def test_l14(browser):

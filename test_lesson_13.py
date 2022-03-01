@@ -1,19 +1,17 @@
-import pytest
-from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
-
-
-@pytest.fixture
-def browser(request):
-    browser = webdriver.Chrome()
-    request.addfinalizer(browser.quit)
-    return browser
+from selenium.webdriver.support.ui import Select
+from fixture.config import browser
 
 
 def add_to_cart(browser, count=1):
     for i in range(count):
         browser.find_element_by_xpath("//*[@id='box-most-popular']//a[@class='link']").click()
-        browser.find_element_by_xpath("//*[@name='add_cart_product']").click()
+        if len(browser.find_elements_by_xpath("//select")) > 0:
+            select = Select(browser.find_element_by_xpath("//select"))
+            select.select_by_visible_text("Small")
+            browser.find_element_by_xpath("//*[@name='add_cart_product']").click()
+        else:
+            browser.find_element_by_xpath("//*[@name='add_cart_product']").click()
         counter = int(browser.find_element_by_xpath("//span[@class='quantity']").text)
         WebDriverWait(browser, 10).until(lambda s: int(s.find_element_by_xpath("//span[@class='quantity']").text) == counter+1)
         browser.back()
